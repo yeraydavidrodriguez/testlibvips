@@ -14,8 +14,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      - name: Install Libvips library
+          sudo apt-get update -y
+          sudo apt-get install -y libvips
+      - name: Install PIP
+        run: |
+          curl  https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
+          python3 get-pip.py
+          python3 -m pip install --user pyvips
       - name: Resize test image
         run: |
           echo Testing resize script
-          echo python3 resize.py
+          python3 ./resize.py
+      - name: Upload modified image
+        uses: test-room-7/action-update-file@v1
+        with:
+          path: raw
+          github-token: ${{ secrets.GITHUB_TOKEN }}
