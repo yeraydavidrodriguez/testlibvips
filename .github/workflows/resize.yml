@@ -32,5 +32,6 @@ jobs:
           python3 ./resize.py
       - name: Update new files
         uses: mikeal/publish-to-github-action@1.0.0
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
