@@ -32,5 +32,8 @@ jobs:
       - name: Upload modified image
         uses: test-room-7/action-update-file@v1
         with:
-          path: raw
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+            file-path: |
+               raw/assets/**/*-gold.tif
+            commit-msg: Update processed images
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+  
