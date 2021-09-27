@@ -25,15 +25,12 @@ jobs:
           curl  https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
           python3 get-pip.py
           python3 -m pip install --user pyvips
+          rm get-pip.py
       - name: Resize test image
         run: |
           echo Testing resize script
           python3 ./resize.py
-      - name: Upload modified image
-        uses: test-room-7/action-update-file@v1
-        with:
-            file-path: |
-               raw/*-gold.tif
-            commit-msg: Update processed images
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update new files
+        uses: mikeal/publish-to-github-action@1.0.0
+
   
